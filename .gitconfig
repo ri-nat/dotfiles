@@ -1,0 +1,10 @@
+[filter "lfs"]
+	clean = git lfs clean %f
+	smudge = git lfs smudge %f
+	required = true
+[user]
+	name = Rinat Shaykhutdinov
+	email = mail@rubydeveloper.ru
+	signingkey = A9FBC6CF
+[commit]
+	gpgsign = true
