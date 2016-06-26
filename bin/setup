@@ -1,0 +1,32 @@
+#!/usr/bin/env ruby
+
+require 'fileutils'
+
+files_list = %w(
+  .gemrc
+  .gitconfig
+  .vimrc
+  .vimrc.bundles
+  .zshrc
+)
+
+dotfiles_dir = File.expand_path(File.dirname(__FILE__) + '/..')
+
+files_list.each do |filename|
+  destination_path = File.expand_path("~/#{ filename }")
+
+
+  if File.exist?(destination_path) || File.symlink?(destination_path)
+    already_exists = true
+  else
+    FileUtils.symlink("#{ dotfiles_dir }/#{ filename }", destination_path)
+  end
+
+  puts "[#{ already_exists ? '-' : '+' }] #{ filename }"
+
+  if already_exists
+    puts "    Skipping, file already exists: #{ destination_path }"
+  else
+    puts "    Successfully copied to #{ destination_path }"
+  end
+end
