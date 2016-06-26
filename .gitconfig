@@ -5,6 +5,6 @@
 [user]
 	name = Rinat Shaykhutdinov
 	email = mail@rubydeveloper.ru
-	signingkey = 601CB872
+	signingkey = CB4C4205
 [commit]
 	gpgsign = true
