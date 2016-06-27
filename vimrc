@@ -91,6 +91,7 @@ set colorcolumn=+1
 " Numbers
 set number
 set numberwidth=5
+set relativenumber
 
 " Switch between the last two files
 nnoremap <leader><leader> <c-^>
