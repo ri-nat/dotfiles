@@ -49,7 +49,7 @@ plugins=(git zsh-syntax-highlighting brew rails ruby osx rbenv)
 
 # User configuration
 
-export PATH="/Users/rinat/.rbenv/shims:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+export PATH="/Users/rinat/.rbenv/shims:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Applications/Postgres.app/Contents/Versions/9.5/bin"
 export GOPATH=$HOME/go-projects
 export PATH=$PATH:$GOPATH/bin
 
