@@ -53,6 +53,10 @@ export PATH="/Users/rinat/.rbenv/shims:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/s
 export GOPATH=$HOME/go-projects
 export PATH=$PATH:$GOPATH/bin
 
+# NVM loading
+export NVM_DIR="$HOME/.nvm"
+. "$(brew --prefix nvm)/nvm.sh"
+
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
