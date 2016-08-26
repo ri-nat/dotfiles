@@ -86,7 +86,7 @@ endif
 
 " Scan all files with CTRL-P
 let g:ctrlp_max_files=0
-let g:ctrlp_max_depth=40
+let g:ctrlp_max_depth=4
 
 " Make it obvious where 80 characters is
 set textwidth=80
