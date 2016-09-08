@@ -1,5 +1,6 @@
 " Plugin defenitions
 Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'fatih/vim-go'
 Plugin 'itchyny/lightline.vim'
 Plugin 'jacoborus/tender'
 Plugin 'kchmck/vim-coffee-script'

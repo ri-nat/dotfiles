@@ -50,7 +50,7 @@ plugins=(git zsh-syntax-highlighting brew rails ruby osx rbenv)
 # User configuration
 
 export PATH="/Users/rinat/.rbenv/shims:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Applications/Postgres.app/Contents/Versions/9.5/bin"
-export GOPATH=$HOME/go-projects
+export GOPATH=$HOME/Documents/Programming/golang
 export PATH=$PATH:$GOPATH/bin
 
 # NVM loading
@@ -60,6 +60,10 @@ export NVM_DIR="$HOME/.nvm"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
+
+# GPG commit signing
+GPG_TTY=$(tty)
+export GPG_TTY
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
