@@ -2,32 +2,65 @@
 
 require 'fileutils'
 
-files_list = %w(
-  gemrc
-  gitconfig
-  vimrc
-  vimrc.bundles
-  zshrc
-)
+GLOBALLY_IGNORED_ENTRIES = %w[
+  .
+  ..
+].freeze
 
-dotfiles_dir = File.expand_path(File.dirname(__FILE__) + '/..')
+IGNORED_ROOT_ENTRIES = GLOBALLY_IGNORED_ENTRIES + %w[
+  .config
+  .git
+  .gitignore
+  bin
+  README.md
+].freeze
+
+class String
+  def colorize(color_code)
+    "\e[#{color_code}m#{self}\e[0m"
+  end
+end
+
+def symlink_root_entries
+  symlink(list('..', IGNORED_ROOT_ENTRIES), '../')
+end
+
+def symlink_config_entries
+  symlink(list('../.config', GLOBALLY_IGNORED_ENTRIES), '../.config/')
+end
+
+def list(dir, rejection_list)
+  Dir.entries(expand_path(dir)).reject do |filename|
+    rejection_list.include?(filename)
+  end
+end
+
+def symlink(entries, dir)
+  entries.each do |filename|
+    file = "#{ dir.gsub('../', '') }#{ filename }"
+    destination_path = File.expand_path("~/#{ file }")
+
+    if File.exist?(destination_path) || File.symlink?(destination_path)
+      already_exists = true
+    else
+      FileUtils.symlink("#{ expand_path(dir) }/#{ filename }", destination_path)
+    end
+
+    puts "[#{ already_exists ? ' ' : 'x' }] #{ file }".colorize(already_exists ? 33 : 32)
+
+    if already_exists
+      puts "    Skipping, file already exists: #{ destination_path }"
+    else
+      puts "    Successfully linked to #{ destination_path }"
+    end
+  end
+end 
+
+def expand_path(dir)
+  File.expand_path(File.dirname(__FILE__) + "/#{ dir }")
+end
 
 puts '=== Symlinking dotfiles'
 
-files_list.each do |filename|
-  destination_path = File.expand_path("~/.#{ filename }")
-
-  if File.exist?(destination_path) || File.symlink?(destination_path)
-    already_exists = true
-  else
-    FileUtils.symlink("#{ dotfiles_dir }/.#{ filename }", destination_path)
-  end
-
-  puts "[#{ already_exists ? '-' : '+' }] .#{ filename }"
-
-  if already_exists
-    puts "    Skipping, file already exists: #{ destination_path }"
-  else
-    puts "    Successfully copied to #{ destination_path }"
-  end
-end
+symlink_root_entries
+symlink_config_entries

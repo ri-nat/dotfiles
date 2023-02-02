@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+
+require 'time'
+
+`git commit -m 'Update on #{ Time.now }'`

@@ -1,0 +1,18 @@
+tabspaces: 4
+
+font:
+  normal:
+    family: BitstreamVeraSansMono Nerd Font Mono
+    style: Roman
+
+  size: 14.0
+
+key_bindings:
+  - { key: LBracket, mods: Alt, chars: "\x1b[" }
+  - { key: RBracket, mods: Alt, chars: "\x1b]" }
+
+shell:
+  program: /opt/homebrew/bin/fish
+  args:
+    - -c
+    - "tmux attach || tmux"

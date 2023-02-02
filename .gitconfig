@@ -1,0 +1,14 @@
+[pull]
+	rebase = false
+[user]
+	name = Rinat Shaykhutdinov
+	email = mail@rinatshay.com
+	signingkey = C68F704AB7EF9A29
+[init]
+	defaultBranch = master
+[core]
+	excludesFile = ~/.gitignore
+[commit]
+	gpgsign = true
+[gpg]
+	program = gpg
