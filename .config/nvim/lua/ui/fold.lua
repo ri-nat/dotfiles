@@ -1,5 +1,4 @@
-vim.opt.foldmethod = 'syntax'
-vim.opt.foldenable = false
+vim.opt.foldenable = true
 vim.opt.foldlevel = 99
 
-vim.cmd('autocmd! FileType rust setlocal foldmethod=syntax foldenable')
+require('ufo').setup()

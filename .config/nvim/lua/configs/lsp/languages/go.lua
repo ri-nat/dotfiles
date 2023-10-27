@@ -3,8 +3,8 @@ local util = require('lspconfig/util')
 
 require('lspconfig').gopls.setup({
     on_attach = lsp.on_attach,
-    cmd = {'gopls', 'serve'},
-    filetypes = {'go', 'gomod'},
+    cmd = { 'gopls', 'serve' },
+    filetypes = { 'go', 'gomod' },
     root_dir = util.root_pattern('go.work', 'go.mod', '.git'),
 
     settings = {
@@ -17,4 +17,16 @@ require('lspconfig').gopls.setup({
     },
 
     capabilities = lsp.capabilities
+})
+
+require("go").setup()
+
+local format_sync_grp = vim.api.nvim_create_augroup("GoImport", {})
+
+vim.api.nvim_create_autocmd("BufWritePre", {
+    pattern = "*.go",
+    callback = function()
+        require('go.format').goimport()
+    end,
+    group = format_sync_grp,
 })

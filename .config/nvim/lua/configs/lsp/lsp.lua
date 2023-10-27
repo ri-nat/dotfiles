@@ -1,6 +1,6 @@
-lsp = {}
+Lsp = {}
 
-lsp.on_attach = function(client, bufnr)
+Lsp.on_attach = function(client, bufnr)
     local function buf_set_keymap(...)
         vim.api.nvim_buf_set_keymap(bufnr, ...)
     end
@@ -44,6 +44,14 @@ lsp.on_attach = function(client, bufnr)
     })
 end
 
-lsp.capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
+local capabilities = vim.lsp.protocol.make_client_capabilities()
 
-return lsp
+-- Enable folding (nvim-ufo)
+capabilities.textDocument.foldingRange = {
+    dynamicRegistration = false,
+    lineFoldingOnly = true
+}
+
+Lsp.capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
+
+return Lsp

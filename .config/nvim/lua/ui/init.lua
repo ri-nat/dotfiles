@@ -3,9 +3,6 @@ require('ui.colors')
 -- Configure lightline
 require('configs.lightline')
 
--- Configure folding
-require('ui.fold')
-
 -- Display relative line numbers
 vim.cmd('set number relativenumber')
 -- Highlight current line

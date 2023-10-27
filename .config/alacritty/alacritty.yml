@@ -11,8 +11,8 @@ key_bindings:
   - { key: LBracket, mods: Alt, chars: "\x1b[" }
   - { key: RBracket, mods: Alt, chars: "\x1b]" }
 
-shell:
-  program: /opt/homebrew/bin/fish
-  args:
-    - -c
-    - "tmux attach || tmux"
+# shell:
+#   program: /opt/homebrew/bin/fish
+#   args:
+#     - -c
+#     - "tmux attach || tmux"

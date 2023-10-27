@@ -4,9 +4,11 @@
 -- base16-gruvbox-dark-hard
 -- base16-harmonic-dark
 -- base16-material-darker
-vim.cmd('colorscheme base16-gruvbox-dark-hard')
+-- vim.cmd('colorscheme base16-gruvbox-dark-hard')
 -- vim.cmd('colorscheme base16-ayu-dark')
 -- vim.cmd('colorscheme base16-nord')
 
+vim.cmd('colorscheme github_dark_dimmed')
+
 -- Customize comments highlight
-vim.cmd('hi Comment guifg=#888888')
+-- vim.cmd('hi Comment guifg=#888888')
