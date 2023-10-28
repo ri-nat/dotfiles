@@ -1,3 +1,6 @@
+-- Set leader key before requiring any plugins
+vim.g.mapleader = ' '
+
 -- Package manager
 require('core.packages')
 

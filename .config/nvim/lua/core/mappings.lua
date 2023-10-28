@@ -1,5 +1,3 @@
-vim.g.mapleader = ' '
-
 -- Double leader to return to last file
 vim.keymap.set('n', '<Leader><Leader>', '<C-^>')
 
