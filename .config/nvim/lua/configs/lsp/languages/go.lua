@@ -12,6 +12,15 @@ require('lspconfig').gopls.setup({
             analyses = {
                 unusedparams = true
             },
+            hints = {
+                assignVariableTypes = true,
+                compositeLiteralFields = true,
+                compositeLiteralTypes = true,
+                constantValues = true,
+                functionTypeParameters = true,
+                parameterNames = true,
+                rangeVariableTypes = true,
+            },
             staticcheck = true
         }
     },
@@ -19,12 +28,12 @@ require('lspconfig').gopls.setup({
     capabilities = lsp.capabilities
 })
 
-require("go").setup()
+require('go').setup()
 
-local format_sync_grp = vim.api.nvim_create_augroup("GoImport", {})
+local format_sync_grp = vim.api.nvim_create_augroup('GoImport', {})
 
-vim.api.nvim_create_autocmd("BufWritePre", {
-    pattern = "*.go",
+vim.api.nvim_create_autocmd('BufWritePre', {
+    pattern = '*.go',
     callback = function()
         require('go.format').goimport()
     end,
