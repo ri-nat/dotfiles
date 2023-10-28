@@ -21,6 +21,8 @@ return require('packer').startup(function(use)
     -- LSP
     --
 
+    use 'nvim-treesitter/nvim-treesitter'
+
     -- Servers management
     use {
         'williamboman/mason-lspconfig.nvim',
