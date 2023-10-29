@@ -5,10 +5,17 @@
 	email = mail@rinatshay.com
 	signingkey = C68F704AB7EF9A29
 [init]
-	defaultBranch = master
+	defaultBranch = main
 [core]
 	excludesFile = ~/.gitignore
 [commit]
 	gpgsign = true
 [gpg]
 	program = gpg
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[push]
+	autoSetupRemote = true
