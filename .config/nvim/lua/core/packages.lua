@@ -73,20 +73,25 @@ require('lazy').setup({
             'kyazdani42/nvim-web-devicons',
             'nvim-treesitter/nvim-treesitter',
             'nvim-lua/plenary.nvim',
-            'nvim-telescope/telescope-fzf-native.nvim'
+            'nvim-telescope/telescope-fzf-native.nvim',
+            'nvim-telescope/telescope-ui-select.nvim',
         },
         config = function()
             require('configs.telescope')
         end
     },
     -- Completions
-    'hrsh7th/cmp-nvim-lsp',
-    'hrsh7th/cmp-buffer',
-    'hrsh7th/cmp-path',
-    'hrsh7th/cmp-cmdline',
-    'hrsh7th/cmp-vsnip',
     {
         'hrsh7th/nvim-cmp',
+        dependencies = {
+            'hrsh7th/cmp-nvim-lsp',
+            'hrsh7th/cmp-buffer',
+            'hrsh7th/cmp-path',
+            'hrsh7th/cmp-cmdline',
+            'hrsh7th/cmp-vsnip',
+            'hrsh7th/vim-vsnip',
+        },
+        lazy = false,
         config = function()
             require('configs.cmp')
         end
