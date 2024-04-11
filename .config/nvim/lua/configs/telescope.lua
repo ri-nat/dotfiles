@@ -11,6 +11,8 @@ require('telescope').setup {
             'package-lock.json',
             'go/.sum',
             '.git',
+            '.idea',
+            '.DS_Store',
         },
     },
 

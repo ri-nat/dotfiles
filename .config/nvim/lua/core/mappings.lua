@@ -18,16 +18,18 @@ vim.keymap.set('v', '<Leader>c', '"+y')
 
 -- File explorer
 vim.keymap.set('n', '<Leader>e', ':Neotree float toggle<CR>')
-vim.keymap.set('n', '<Leader>E', ':Neotree show toggle<CR>')
+vim.keymap.set('n', '<Leader>E', ':Neotree left toggle<CR>')
 
 -- Clear search highlights on Esc
 vim.keymap.set('n', '<Esc>', ':noh<CR>')
 
 -- Telescope
-vim.api.nvim_set_keymap('n', '<Leader>ff', ':lua require"telescope.builtin".find_files({ hidden = true })<CR>', {
-    noremap = true,
-    silent = true
-})
+vim.api.nvim_set_keymap('n', '<Leader>ff',
+    ':lua require"telescope.builtin".find_files({ hidden = true })<CR>', {
+        noremap = true,
+        silent = true
+    }
+)
 vim.keymap.set('n', '<Leader>fg', ':Telescope live_grep<CR>')
 vim.keymap.set('n', '<Leader>fb', ':Telescope buffers<CR>')
 vim.keymap.set('n', '<Leader>fh', ':Telescope help_tags<CR>')

@@ -7,9 +7,9 @@ rt.setup({
             lsp.on_attach(aa, bufnr)
 
             -- Hover actions
-            vim.keymap.set('n', '<C-tab>', rt.hover_actions.hover_actions, {
-                buffer = bufnr
-            })
+            -- vim.keymap.set('n', '<C-a>', rt.hover_actions.hover_actions, {
+            --     buffer = bufnr
+            -- })
 
             -- Code action groups
             vim.keymap.set('n', '<Leader>a', rt.code_action_group.code_action_group, {

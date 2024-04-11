@@ -80,6 +80,13 @@ require('lazy').setup({
             require('configs.telescope')
         end
     },
+    {
+        'nvim-treesitter/nvim-treesitter',
+        lazy = false,
+        config = function()
+            require('configs.treesitter')
+        end
+    },
     -- Completions
     {
         'hrsh7th/nvim-cmp',
@@ -159,6 +166,16 @@ require('lazy').setup({
             require('configs.comment')
         end
     },
+    -- Highlight todo
+    {
+        'folke/todo-comments.nvim',
+        dependencies = { 'nvim-lua/plenary.nvim' },
+        opts = {
+            -- your configuration comes here
+            -- or leave it empty to use the default settings
+            -- refer to the configuration section below
+        }
+    },
     --
     -- LSP
     --
@@ -180,9 +197,9 @@ require('lazy').setup({
     -- LSP signature while typing
     {
         'ray-x/lsp_signature.nvim',
-        config = function()
-            require('configs.lsp_signature')
-        end
+        -- config = function()
+        --     require('configs.lsp_signature')
+        -- end
     },
 
     --
@@ -201,8 +218,23 @@ require('lazy').setup({
     'rust-lang/rust.vim',
     {
         'simrat39/rust-tools.nvim',
+        dependencies = {
+            'nvim-lua/plenary.nvim',
+            'mfussenegger/nvim-dap',
+        },
         config = function()
             require('configs.lsp.languages.rust')
         end
     },
+
+    -- ESLint
+    {
+        'MunifTanjim/eslint.nvim',
+        dependencies = {
+            'jose-elias-alvarez/null-ls.nvim',
+        },
+        config = function()
+            require('configs.lsp.languages.eslint')
+        end
+    }
 })

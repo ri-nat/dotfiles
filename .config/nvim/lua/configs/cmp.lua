@@ -17,13 +17,18 @@ cmp.setup({
             vim.fn["vsnip#anonymous"](args.body)
         end,
     },
-    
+
     mapping = cmp.mapping.preset.insert({
         ['<Tab>'] = cmp.mapping.confirm({ select = true }),
         ['<Enter>'] = cmp.mapping.confirm({ select = true }),
         -- ['<C-Tab>'] = cmp.mapping.complete(),
     }),
-    
+
+    window = {
+        completion = cmp.config.window.bordered(),
+        documentation = cmp.config.window.bordered(),
+    },
+
     sources = cmp.config.sources({
         -- TODO: currently snippets from lsp end up getting prioritized -- stop that!
         { name = 'nvim_lsp' },
@@ -38,7 +43,7 @@ cmp.setup({
 
 -- Enable completing paths in :
 cmp.setup.cmdline(':', {
-  sources = cmp.config.sources({
-    { name = 'path' }
-  })
+    sources = cmp.config.sources({
+        { name = 'path' }
+    })
 })
