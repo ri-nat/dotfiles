@@ -141,7 +141,14 @@ require('lazy').setup({
         },
         config = function()
             require('configs.trouble')
-        end
+        end,
+        keys = {
+            {
+                "<leader>xx",
+                "<cmd>Trouble diagnostics toggle<cr>",
+                desc = "Diagnostics (Trouble)",
+            }
+        }
     },
     -- Surround
     {

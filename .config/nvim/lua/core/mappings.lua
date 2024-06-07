@@ -41,9 +41,6 @@ vim.keymap.set('v', '<Leader>bd', ':lua require("b64").decode()<CR>')
 -- LSP
 vim.keymap.set('n', '<Leader>rr', ':LspRestart<CR>')
 
--- Trouble
-vim.keymap.set('n', '<Leader>xx', ':TroubleToggle<CR>')
-
 -- GitHub Copilot
 vim.g.copilot_assume_mapped = true
 vim.g.copilot_no_tab_map = true
