@@ -1,3 +1,4 @@
 function prompt_hostname --description 'short hostname for the prompt'
-    string replace -r "\..*" "" "local"
+    set current_hostname (hostname)
+    string replace -r "\..*" "" $current_hostname
 end

@@ -1,6 +1,6 @@
 if status is-interactive
     # Commands to run in interactive sessions can go here
-    abbr -a -g ls exa
+    abbr -a -g ls eza
     abbr -a -g be bundle exec
     abbr -a -g k kubectl
     abbr -a -g tf terraform
