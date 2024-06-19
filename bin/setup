@@ -37,27 +37,27 @@ end
 
 def symlink(entries, dir)
   entries.each do |filename|
-    file = "#{ dir.gsub('../', '') }#{ filename }"
-    destination_path = File.expand_path("~/#{ file }")
+    file = "#{dir.gsub('../', '')}#{filename}"
+    destination_path = File.expand_path("~/#{file}")
 
     if File.exist?(destination_path) || File.symlink?(destination_path)
       already_exists = true
     else
-      FileUtils.symlink("#{ expand_path(dir) }/#{ filename }", destination_path)
+      FileUtils.symlink("#{expand_path(dir)}/#{filename}", destination_path)
     end
 
-    puts "[#{ already_exists ? ' ' : 'x' }] #{ file }".colorize(already_exists ? 33 : 32)
+    puts "[#{already_exists ? ' ' : 'x'}] #{file}".colorize(already_exists ? 33 : 32)
 
     if already_exists
-      puts "    Skipping, file already exists: #{ destination_path }"
+      puts "    Skipping, file already exists: #{destination_path}"
     else
-      puts "    Successfully linked to #{ destination_path }"
+      puts "    Successfully linked to #{destination_path}"
     end
   end
-end 
+end
 
 def expand_path(dir)
-  File.expand_path(File.dirname(__FILE__) + "/#{ dir }")
+  File.expand_path(File.dirname(__FILE__) + "/#{dir}")
 end
 
 puts '=== Symlinking dotfiles'
