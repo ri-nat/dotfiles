@@ -7,10 +7,8 @@ if status is-interactive
     abbr -a -g shame "git commit --amend && git push -f"
     abbr -a -g f foundation
 
-    fish_add_path /opt/homebrew/opt/ruby/bin
     fish_add_path -g ~/go/bin
     fish_add_path -g ~/bin
-    fish_add_path -g ~/.rbenv/shims
     fish_add_path -g /opt/homebrew/opt/binutils/bin
 
     set -gx EDITOR nvim
@@ -20,8 +18,6 @@ if status is-interactive
     # set fzf_preview_dir_cmd exa --color=auto --icons --all
     set -gx $EDITOR "nvim"
     set fzf_directory_opts --bind "ctrl-o:execute($EDITOR {} &> /dev/tty)"
-
-    source /opt/homebrew/share/google-cloud-sdk/path.fish.inc
 end
 
 
