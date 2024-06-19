@@ -7,9 +7,9 @@ if status is-interactive
     abbr -a -g shame "git commit --amend && git push -f"
     abbr -a -g f foundation
 
-    fish_add_path -g ~/go/bin
-    fish_add_path -g ~/bin
-    fish_add_path -g /opt/homebrew/opt/binutils/bin
+    fish_add_path ~/go/bin
+    fish_add_path ~/bin
+    fish_add_path /opt/homebrew/opt/binutils/bin
 
     set -gx EDITOR nvim
     set -x GPG_TTY (tty)
@@ -18,6 +18,8 @@ if status is-interactive
     # set fzf_preview_dir_cmd exa --color=auto --icons --all
     set -gx $EDITOR "nvim"
     set fzf_directory_opts --bind "ctrl-o:execute($EDITOR {} &> /dev/tty)"
+
+    eval "$(/opt/homebrew/bin/brew shellenv)"
 end
 
 
@@ -30,3 +32,10 @@ if not string match -q -- $PNPM_HOME $PATH
   set -gx PATH "$PNPM_HOME" $PATH
 end
 # pnpm end
+
+# Load `ssh-agent`
+if test -z (pgrep ssh-agent | string collect)
+    eval (ssh-agent -c)
+    set -Ux SSH_AUTH_SOCK $SSH_AUTH_SOCK
+    set -Ux SSH_AGENT_PID $SSH_AGENT_PID
+end
