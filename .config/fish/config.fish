@@ -37,3 +37,8 @@ end
 eval (ssh-agent -c) > /dev/null
 set -Ux SSH_AUTH_SOCK $SSH_AUTH_SOCK
 set -Ux SSH_AGENT_PID $SSH_AGENT_PID
+
+# Load `~/.env` file
+if test -f ~/.env
+    source ~/.env
+end

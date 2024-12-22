@@ -1,28 +1,30 @@
+-- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
-    vim.fn.system({
-        "git",
-        "clone",
-        "--filter=blob:none",
-        "https://github.com/folke/lazy.nvim.git",
-        "--branch=stable", -- latest stable release
-        lazypath,
-    })
+    local lazyrepo = "https://github.com/folke/lazy.nvim.git"
+    local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
+    if vim.v.shell_error ~= 0 then
+        vim.api.nvim_echo({
+            { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
+            { out,                            "WarningMsg" },
+            { "\nPress any key to exit..." },
+        }, true, {})
+        vim.fn.getchar()
+        os.exit(1)
+    end
 end
-
 vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
-    -- Load the colorscheme first
+    --
+    -- UI & Theming
+    --
     {
-
         'projekt0n/github-nvim-theme',
-        lazy = false,    -- make sure we load this during startup if it is your main colorscheme
-        priority = 1000, -- make sure to load this before all the other start plugins
+        lazy = false,    -- load during startup (main colorscheme)
+        priority = 1000, -- load before other start plugins
         config = function()
             require('github-theme').setup()
-
-            -- Set the colorscheme
             vim.cmd('colorscheme github_dark_dimmed')
         end,
     },
@@ -110,8 +112,6 @@ require('lazy').setup({
             require('configs.toggleterm')
         end
     },
-    -- GitHub Copilot
-    'github/copilot.vim',
     -- EditorConfig
     'gpanders/editorconfig.nvim',
     -- Folding
@@ -183,43 +183,30 @@ require('lazy').setup({
             -- refer to the configuration section below
         }
     },
+
+
     --
-    -- LSP
+    -- LSP & Completion
     --
 
-    -- Servers management
     {
         'williamboman/mason-lspconfig.nvim',
-        dependencies = { 'williamboman/mason.nvim' },
+        event = "BufReadPre",
+        dependencies = {
+            'williamboman/mason.nvim',
+            'neovim/nvim-lspconfig',
+            'ray-x/lsp_signature.nvim',
+        },
         config = function()
             require('configs.mason')
-        end
-    },
-    {
-        'neovim/nvim-lspconfig',
-        config = function()
             require('configs.lspconfig')
+            require('lsp_signature').setup()
         end
-    },
-    -- LSP signature while typing
-    {
-        'ray-x/lsp_signature.nvim',
-        -- config = function()
-        --     require('configs.lsp_signature')
-        -- end
     },
 
     --
     -- Languages
     --
-
-    -- Go
-    {
-        'ray-x/go.nvim',
-        config = function()
-            require('configs.lsp.languages.go')
-        end
-    },
 
     -- Rust
     'rust-lang/rust.vim',
@@ -234,14 +221,56 @@ require('lazy').setup({
         end
     },
 
-    -- ESLint
+    --
+    -- Avante
+    --
+
     {
-        'MunifTanjim/eslint.nvim',
-        dependencies = {
-            'jose-elias-alvarez/null-ls.nvim',
+        "yetone/avante.nvim",
+        event = "VeryLazy",
+        lazy = false,
+        version = false, -- set this if you want to always pull the latest change
+        opts = {
+            -- options
+            behaviour = {
+                auto_suggestions = false,
+            }
         },
-        config = function()
-            require('configs.lsp.languages.eslint')
-        end
+        -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
+        build = "make",
+        dependencies = {
+            "nvim-treesitter/nvim-treesitter",
+            "stevearc/dressing.nvim",
+            "nvim-lua/plenary.nvim",
+            "MunifTanjim/nui.nvim",
+            --- The below dependencies are optional,
+            "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
+            -- "zbirenbaum/copilot.lua", -- for providers='copilot'
+            {
+                -- support for image pasting
+                "HakonHarnes/img-clip.nvim",
+                event = "VeryLazy",
+                opts = {
+                    -- recommended settings
+                    default = {
+                        embed_image_as_base64 = false,
+                        prompt_for_file_name = false,
+                        drag_and_drop = {
+                            insert_mode = true,
+                        },
+                        -- required for Windows users
+                        use_absolute_path = true,
+                    },
+                },
+            },
+            {
+                -- Make sure to set this up properly if you have lazy=true
+                'MeanderingProgrammer/render-markdown.nvim',
+                opts = {
+                    file_types = { "markdown", "Avante" },
+                },
+                ft = { "markdown", "Avante" },
+            },
+        },
     }
 })
