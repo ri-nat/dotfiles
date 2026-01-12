@@ -1,6 +1,6 @@
 local lsp = require('configs.lsp.lsp')
 
-require('lspconfig').solargraph.setup({
+vim.lsp.config('solargraph', {
     on_attach = lsp.on_attach,
     capabilities = lsp.capabilities,
     settings = {
@@ -22,3 +22,5 @@ require('lspconfig').solargraph.setup({
         }
     }
 })
+
+vim.lsp.enable('solargraph')

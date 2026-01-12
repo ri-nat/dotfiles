@@ -8,7 +8,5 @@
 -- vim.cmd('colorscheme base16-ayu-dark')
 -- vim.cmd('colorscheme base16-nord')
 
-vim.cmd('colorscheme github_dark_default')
-
--- Customize comments highlight
--- vim.cmd('hi Comment guifg=#888888')
+-- Colorscheme is set by the theme plugin (see `lua/plugins/ui.lua`).
+-- Put highlight overrides here if you want to tweak specific groups after the scheme loads.

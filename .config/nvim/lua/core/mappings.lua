@@ -40,13 +40,3 @@ vim.keymap.set('v', '<Leader>bd', ':lua require("b64").decode()<CR>')
 
 -- LSP
 vim.keymap.set('n', '<Leader>rr', ':LspRestart<CR>')
-
--- GitHub Copilot
-vim.g.copilot_assume_mapped = true
-vim.g.copilot_no_tab_map = true
-vim.api.nvim_set_keymap('i', '<C-f>', 'copilot#Accept("<CR>")', {
-    expr = true,
-    silent = true
-})
-vim.keymap.set('n', '<Leader>cd', ':Copilot disable<CR>')
-vim.keymap.set('n', '<Leader>ce', ':Copilot enable<CR>')
